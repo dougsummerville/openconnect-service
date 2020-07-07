@@ -1,0 +1,3 @@
+A systemd @ service for openconnect with PKGBUILD for arch.
+
+Look in /etc/openconnect for config example.
