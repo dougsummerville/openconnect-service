@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenConnect VPN - %i
+Wants=network.target
+
+[Service]
+Type=forking
+PIDFile=/run/openconnect@%i.pid
+ExecStart=/bin/bash -c '/bin/cat /etc/openconnect/%i.password | /usr/bin/openconnect --pid-file=/run/openconnect@%i.pid --background --config=/etc/openconnect/%i %i'
+
+KillSignal=SIGINT
+StandardOutput=journal
