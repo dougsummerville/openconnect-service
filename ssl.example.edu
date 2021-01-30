@@ -1,4 +1,0 @@
-authgroup=DOMAIN
-user=your_user_name
-juniper
-passwd-on-stdin

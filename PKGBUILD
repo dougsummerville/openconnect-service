@@ -1,20 +1,22 @@
 #maintainer  Doug Summerville dsummer at binghamton.edu
 pkgname=openconnect-service
-pkgver=1.0
+pkgver=1.1
 pkgrel=1
-pkgdesc="Template service starting openconnect vpn"
+pkgdesc="Template service for openconnect vpn"
 arch=('any')
 license=('MIT')
 depends=('openconnect')
-source=(openconnect@.service ssl.example.edu ssl.example.edu.password)
-md5sums=('9f1d9e94fc48848d0ef89e1a6048a7b7'
-         '3dc0ee00cab30be58836ee71db7574c3'
-         '451907a70c6bb79f3b72f25a49ff2645')
-
+source=(openconnect@.service openconnect-service-start.sh ssl.example.com ssl.example.com.passwd)
 package() {
     install -dm755 ${pkgdir}/etc/openconnect
-    install -m600 ${srcdir}/ssl.example.edu ${pkgdir}/etc/openconnect/
-    install -m600 ${srcdir}/ssl.example.edu.password ${pkgdir}/etc/openconnect/
+    install -dm755 ${pkgdir}/usr/bin
     install -dm755 ${pkgdir}/usr/lib/systemd/system
-    install -m744 ${srcdir}/openconnect@.service ${pkgdir}/usr/lib/systemd/system/openconnect@.service
+    install -m600 ${srcdir}/ssl.example.com ${pkgdir}/etc/openconnect/
+    install -m600 ${srcdir}/ssl.example.com.passwd ${pkgdir}/etc/openconnect/
+    install -m744 ${srcdir}/openconnect@.service ${pkgdir}/usr/lib/systemd/system/
+    install -m744 ${srcdir}/openconnect-service-start.sh ${pkgdir}/usr/bin/
 }
+md5sums=('57d51738260f3973f866624d9d467690'
+         '98e56ed78be5e0a9064fe46aef603f26'
+         '300acdaf6a0d992d3729029697bc8951'
+         '451907a70c6bb79f3b72f25a49ff2645')
